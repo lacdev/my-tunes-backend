@@ -1,13 +1,11 @@
 import { Router } from 'express'
-import { getUserById } from '../controllers/user'
 
 const router = Router()
 
 router.get('/')
+router.get('/:userId')
+router.post('/')
+router.patch('/:userId')
+router.delete('/:userId')
 
 export { router as userRouter }
-
-router.get('/', async (req, res) => {
-  const user = await getUserById(req.body._id)
-  res.send({ response: user })
-})

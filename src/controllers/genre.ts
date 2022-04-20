@@ -8,13 +8,14 @@ import {
 
 export const handleGetGenres = async (req, res) => {
   const genres = await getAllGenres()
-
   res.send({ response: genres })
 }
 
 export const handleGetGenre = async (req, res) => {
   const { genreId } = req.params
   const genre = await getGenreById(genreId)
+
+  console.log(genre)
   res.send({ response: genre })
 }
 

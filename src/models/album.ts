@@ -29,7 +29,7 @@ const albumSchema = new Schema<Album>({
 export const AlbumModel = model<Album>('album', albumSchema)
 
 export interface getAlbumByIdDTO {
-  _id: string
+  albumId: string
 }
 export interface CreateAlbumDTO {
   name: string
@@ -41,7 +41,7 @@ export interface CreateAlbumDTO {
   stock: number
 }
 export interface UpdateAlbumDTO {
-  _id: string
+  albumId: string
   releaseDate: string
   name: string
   singer: string
@@ -50,5 +50,5 @@ export interface UpdateAlbumDTO {
   genre: Genre
 }
 export interface deleteAlbumDTO {
-  _id: string
+  albumId: string
 }

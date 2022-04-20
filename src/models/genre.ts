@@ -12,15 +12,15 @@ const genreSchema = new Schema<Genre>({
 export const GenreModel = model<Genre>('genre', genreSchema)
 
 export interface getGenreByIdDTO {
-  _id: string
+  genreId: string
 }
 export interface CreateGenreDTO {
   description: string
 }
 export interface UpdateGenreDTO {
-  _id: string
+  genreId: string
   description: string
 }
 export interface deleteGenreDTO {
-  _id: string
+  genreId: string
 }
