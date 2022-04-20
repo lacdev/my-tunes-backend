@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import { run } from './modules/db'
 
+// Routers
 import { genreRouter } from './routes/genre'
 import { artistRouter } from './routes/artist'
 import { songRouter } from './routes/song'
@@ -12,7 +13,7 @@ import { userRouter } from './routes/user'
 
 const app = express()
 
-//Middlewares
+// Middlewares
 app.use(cors())
 app.use(helmet())
 app.use(morgan('combined'))

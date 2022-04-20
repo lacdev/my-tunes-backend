@@ -35,14 +35,14 @@ export interface getSongByIdDTO {
 }
 export interface CreateSongDTO {
   name: string
-  singer: Artist
+  artist: Artist
   album?: Album
   price?: number
 }
 export interface UpdateSongDTO {
   _id: string
   name: string
-  singer: Artist
+  artist: Artist
   album?: Album
   price?: number
 }

@@ -25,17 +25,15 @@ export interface getArtistByIdDTO {
   _id: string
 }
 export interface CreateArtistDTO {
-  stageName: string
   name: string
   lastName: string
-  nationality: string
+  country: string
 }
 export interface UpdateArtistDTO {
   _id: string
-  stageName: string
   name: string
   lastName: string
-  nationality: string
+  country: string
 }
 export interface deleteArtistDTO {
   _id: string
