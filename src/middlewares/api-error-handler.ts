@@ -1,6 +1,6 @@
 import { ApiError } from '../errors/ApiError'
 
-const ApiErrorHandler = (err: any, req: string, res: any, next: any) => {
+export const ApiErrorHandler = (err: any, req: any, res: any, next: any) => {
   //Don't console log in production because it is not async
   console.error(err)
 
@@ -11,5 +11,3 @@ const ApiErrorHandler = (err: any, req: string, res: any, next: any) => {
 
   res.status(500).json('Something went wrong.')
 }
-
-export { ApiErrorHandler }

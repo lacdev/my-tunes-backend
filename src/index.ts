@@ -3,8 +3,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import { run } from './modules/db'
-
-// Routers
+import { ApiErrorHandler } from './middlewares/api-error-handler'
 import { genreRouter } from './routes/genre'
 import { artistRouter } from './routes/artist'
 import { songRouter } from './routes/song'
@@ -34,3 +33,10 @@ app.listen(8000, async () => {
   await run()
   console.log(`App listening on port 8000`)
 })
+
+//Errors Global Middleware
+app.use(ApiErrorHandler)
+
+// Gracefully restarters on unhandled errors
+// process.on("uncaughtException")
+// process.on("unhandledRejection")
