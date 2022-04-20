@@ -1,21 +1,38 @@
-import { GenreModel } from '../models/genre'
+import {
+  createGenre,
+  deleteGenre,
+  getAllGenres,
+  getGenreById,
+  updateGenre,
+} from '../usecases/genre'
 
-export const getAllGenres = async () => {
-  return await GenreModel.find()
+export const handleGetGenres = async (req, res) => {
+  const genres = await getAllGenres()
+
+  res.send({ response: genres })
 }
 
-export const getGenreById = async (id: any) => {
-  return await GenreModel.findById(id)
+export const handleGetGenre = async (req, res) => {
+  const { genreId } = req.params
+  const genre = await getGenreById(genreId)
+  res.send({ response: genre })
 }
 
-export const createGenre = async (body: any) => {
-  return await GenreModel.create(body)
+export const handleGenreCreate = async (req, res) => {
+  const body = req.body
+  const genre = await createGenre(body)
+  res.send({ status: 200, response: genre })
 }
 
-export const updateGenre = async (id: any, body: any) => {
-  return await GenreModel.findByIdAndUpdate(id, body, { new: true })
+export const handleGenreUpdate = async (req, res) => {
+  const { genreId } = req.params
+  const body = req.body
+  const genre = await updateGenre(genreId, body)
+  res.send({ status: 200, response: genre })
 }
 
-export const deleteGenre = async (id: any) => {
-  return await GenreModel.findByIdAndDelete(id)
+export const handleGenreDelete = async (req, res) => {
+  const { genreId } = req.params
+  const genre = await deleteGenre(genreId)
+  res.send({ status: 204, response: genre })
 }
