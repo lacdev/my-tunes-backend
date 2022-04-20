@@ -22,7 +22,7 @@ const artistSchema = new Schema<Artist>({
 export const ArtistModel = model<Artist>('artist', artistSchema)
 
 export interface getArtistByIdDTO {
-  _id: string
+  artistId: string
 }
 export interface CreateArtistDTO {
   name: string
@@ -30,11 +30,11 @@ export interface CreateArtistDTO {
   country: string
 }
 export interface UpdateArtistDTO {
-  _id: string
+  artistId: string
   name: string
   lastName: string
   country: string
 }
 export interface deleteArtistDTO {
-  _id: string
+  artistId: string
 }

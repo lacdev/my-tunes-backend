@@ -1,38 +1,37 @@
 import {
-  createGenre,
-  deleteGenre,
-  getAllGenres,
-  getGenreById,
-  updateGenre,
-} from '../usecases/genre'
+  createUser,
+  deleteUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+} from '../usecases/user'
 
-export const handleGetGenres = async (req, res) => {
-  const genres = await getAllGenres()
-
-  res.send({ response: genres })
+export const handleGetUsers = async (req, res) => {
+  const users = await getAllUsers()
+  res.send({ response: users })
 }
 
-export const handleGetGenre = async (req, res) => {
-  const { genreId } = req.params
-  const genre = await getGenreById(genreId)
-  res.send({ response: genre })
+export const handleGetUser = async (req, res) => {
+  const { userId } = req.params
+  const user = await getUserById(userId)
+  res.send({ response: user })
 }
 
-export const handleGenreCreate = async (req, res) => {
+export const handleUserCreate = async (req, res) => {
   const body = req.body
-  const genre = await createGenre(body)
-  res.send({ status: 200, response: genre })
+  const user = await createUser(body)
+  res.send({ status: 200, response: user })
 }
 
-export const handleGenreUpdate = async (req, res) => {
-  const { genreId } = req.params
+export const handleUserUpdate = async (req, res) => {
+  const { userId } = req.params
   const body = req.body
-  const genre = await updateGenre(genreId, body)
-  res.send({ status: 200, response: genre })
+  const user = await updateUser(userId, body)
+  res.send({ status: 200, response: user })
 }
 
-export const handleGenreDelete = async (req, res) => {
-  const { genreId } = req.params
-  const genre = await deleteGenre(genreId)
-  res.send({ status: 204, response: genre })
+export const handleUserDelete = async (req, res) => {
+  const { userId } = req.params
+  const user = await deleteUser(userId)
+  res.send({ status: 204, response: user })
 }

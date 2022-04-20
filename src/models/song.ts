@@ -31,7 +31,7 @@ const songSchema = new Schema<Song>({
 export const SongModel = model<Song>('song', songSchema)
 
 export interface getSongByIdDTO {
-  _id: string
+  songId: string
 }
 export interface CreateSongDTO {
   name: string
@@ -40,12 +40,12 @@ export interface CreateSongDTO {
   price?: number
 }
 export interface UpdateSongDTO {
-  _id: string
+  songId: string
   name: string
   artist: Artist
   album?: Album
   price?: number
 }
 export interface deleteSongDTO {
-  _id: string
+  songId: string
 }

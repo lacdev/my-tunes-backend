@@ -16,3 +16,19 @@ const userSchema = new Schema<User>({
 })
 
 export const UserModel = model<User>('user', userSchema)
+
+export interface LoginDTO {
+  userName?: string
+  email?: string
+  password: string
+}
+
+export interface LoginEmailDTO {
+  email: string
+  password: string
+}
+
+export interface LoginUsernameDTO {
+  userName: string
+  password: string
+}
