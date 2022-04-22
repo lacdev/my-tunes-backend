@@ -1,7 +1,8 @@
+import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { ApiError } from '../errors/ApiError'
 
-const verifyToken = async (req, res, next) => {
+const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const SECRET = process.env.JWT_SECRET
 
@@ -12,7 +13,7 @@ const verifyToken = async (req, res, next) => {
       return
     }
 
-    const tokenArray = tokenHeaders.split(' ')
+    const tokenArray = (tokenHeaders as any).split(' ')
 
     const token = tokenArray[1]
 
@@ -28,13 +29,16 @@ const verifyToken = async (req, res, next) => {
       )
     }
 
-    req.user = decoded
+    ;(req as any).user = decoded
 
     /* Req.user is going to be equal to the decoded identity object from the user.
      req.user = { 
       id: mongoId, 
       username: exampleUserName
-      email: exampleEmail 
+
+      // TODO 
+
+      Add user type 
     } */
 
     next()
