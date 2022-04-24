@@ -4,6 +4,10 @@ export const getAllUsers = async () => {
   return await UserModel.find()
 }
 
+export const getUser = async (query: object) => {
+  return await UserModel.findOne(query)
+}
+
 export const getUserById = async (id: any) => {
   return await UserModel.findById(id)
 }

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
 import { ApiError } from '../errors/ApiError'
+import jwt from 'jsonwebtoken'
 
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -18,14 +18,14 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     const token = tokenArray[1]
 
     if (!token) {
-      next(ApiError.unauthorized('Unathorized Access. Token not provided.'))
+      next(ApiError.unauthorized('Unauthorized Access. Token not provided.'))
     }
 
     const decoded = jwt.verify(token, SECRET)
 
     if (!decoded) {
       next(
-        ApiError.unauthorized('Unathorized Access. A valid token is required.')
+        ApiError.unauthorized('Unauthorized Access. A valid token is required.')
       )
     }
 
@@ -34,11 +34,8 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     /* Req.user is going to be equal to the decoded identity object from the user.
      req.user = { 
       id: mongoId, 
-      username: exampleUserName
-
-      // TODO 
-
-      Add user type 
+      username: user1
+      isAdmin: boolean
     } */
 
     next()

@@ -7,6 +7,7 @@ export interface User {
   password: string
   isAdmin: boolean
   address?: string
+  avatar?: string
 }
 
 const UserSchema = new Schema<User>(
@@ -16,6 +17,7 @@ const UserSchema = new Schema<User>(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
     address: { type: String, default: '' },
+    avatar: { type: String },
   },
   { timestamps: true }
 )

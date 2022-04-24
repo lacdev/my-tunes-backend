@@ -21,12 +21,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //Routers
-app.use('/genres', genreRouter)
-app.use('/artists', artistRouter)
-app.use('/songs', songRouter)
-app.use('/albums', albumRouter)
-app.use('/users', userRouter)
-app.use('/auth', authRouter)
+app.use('api/genres', genreRouter)
+app.use('api/artists', artistRouter)
+app.use('api/songs', songRouter)
+app.use('api/albums', albumRouter)
+app.use('api/users', userRouter)
+app.use('api/auth', authRouter)
 
 // Health endpoint
 app.get('/', (req, res) => res.send({ response: 'Hello world' }))

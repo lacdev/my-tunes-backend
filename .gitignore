@@ -3,5 +3,5 @@ node_modules/
 env/
 env/.env
 ./docker-compose.dev.yml
-
+.vscode
 docker-compose.dev.yml
