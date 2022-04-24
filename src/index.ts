@@ -29,7 +29,7 @@ app.use('/users', userRouter)
 // Health endpoint
 app.get('/', (req, res) => res.send({ response: 'Hello world' }))
 
-app.listen(8000, async () => {
+app.listen(8013, async () => {
   await run()
   console.log(`App listening on port 8000`)
 })
