@@ -37,6 +37,6 @@ app.listen(8013, async () => {
 //Errors Global Middleware
 app.use(ApiErrorHandler)
 
-// Gracefully restarters on unhandled errors
+// Gracefully restarts on unhandled errors
 // process.on("uncaughtException")
 // process.on("unhandledRejection")

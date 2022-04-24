@@ -1,5 +1,5 @@
 version: '3.8'
-
+# Testing, not used for now.
 services:
   mongo:
     image: mongo
@@ -10,13 +10,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: the_database
     volumes:
-      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./modules/db.ts:/docker-entrypoint-initdb.d/mongo-init.ts
       - ./mongo_data:/data/db
-  redis:
-    image: redis
-    ports:
-      - 6379:6379
-
 volumes:
   mongo_data:
 # Bind mount is the act of binding a file on the host machine to a file in the container.
@@ -24,6 +19,5 @@ volumes:
 # The syntax is -v FILE-IN-HOST:FILE-IN-CONTAINER.
 # The bind mount is declared under key volumes in docker-compose.
 # Otherwise the format is the same, first host and then container:
-
 # You can use -f flag to specify a file to run the Docker Compose command
 # with e.g. docker-compose -f docker-compose.dev.yml up. Now that we may have multiple it's useful.

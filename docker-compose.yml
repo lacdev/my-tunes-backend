@@ -1,8 +1,7 @@
-version: '3.8' # Version 3.8 is quite new and should work
-
+version: '3.8'
 services:
-  app: # The name of the service, can be anything
-    image: node13 # Declares which image to use
-    build: . # Declares where to build if image is not found
-    ports: # Declares the ports to expose
+  app:
+    image: node13
+    build: .
+    ports:
       - 8013:8013
