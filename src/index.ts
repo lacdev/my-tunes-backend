@@ -9,6 +9,7 @@ import { artistRouter } from './routes/artist'
 import { songRouter } from './routes/song'
 import { albumRouter } from './routes/album'
 import { userRouter } from './routes/user'
+import { authRouter } from './routes/auth'
 
 const app = express()
 
@@ -25,13 +26,14 @@ app.use('/artists', artistRouter)
 app.use('/songs', songRouter)
 app.use('/albums', albumRouter)
 app.use('/users', userRouter)
+app.use('/auth', authRouter)
 
 // Health endpoint
 app.get('/', (req, res) => res.send({ response: 'Hello world' }))
 
 app.listen(8013, async () => {
   await run()
-  console.log(`App listening on port 8000`)
+  console.log(`App listening on port 8013`)
 })
 
 //Errors Global Middleware

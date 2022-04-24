@@ -1,3 +1,4 @@
+import { Request, Response } from 'express'
 import {
   createAlbum,
   deleteAlbum,
@@ -6,7 +7,7 @@ import {
   updateAlbum,
 } from '../usecases/album'
 
-export const handleGetAlbums = async (req, res) => {
+export const handleGetAlbums = async (req: Request, res: Response) => {
   try {
     const albums = await getAllAlbums()
     res.send({ response: albums })
@@ -15,7 +16,7 @@ export const handleGetAlbums = async (req, res) => {
   }
 }
 
-export const handleGetAlbum = async (req, res) => {
+export const handleGetAlbum = async (req: Request, res: Response) => {
   try {
     const { albumId } = req.params
     const album = await getAlbumById(albumId)
@@ -25,7 +26,7 @@ export const handleGetAlbum = async (req, res) => {
   }
 }
 
-export const handleAlbumCreate = async (req, res) => {
+export const handleAlbumCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
     const album = await createAlbum(body)
@@ -35,7 +36,7 @@ export const handleAlbumCreate = async (req, res) => {
   }
 }
 
-export const handleAlbumUpdate = async (req, res) => {
+export const handleAlbumUpdate = async (req: Request, res: Response) => {
   try {
     const { albumId } = req.params
     const body = req.body
@@ -46,7 +47,7 @@ export const handleAlbumUpdate = async (req, res) => {
   }
 }
 
-export const handleAlbumDelete = async (req, res) => {
+export const handleAlbumDelete = async (req: Request, res: Response) => {
   try {
     const { albumId } = req.params
     const album = await deleteAlbum(albumId)

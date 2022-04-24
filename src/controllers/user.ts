@@ -1,3 +1,5 @@
+import { Request, Response } from 'express'
+
 import {
   createUser,
   deleteUser,
@@ -6,7 +8,7 @@ import {
   updateUser,
 } from '../usecases/user'
 
-export const handleGetUsers = async (req, res) => {
+export const handleGetUsers = async (req: Request, res: Response) => {
   try {
     const users = await getAllUsers()
     res.send({ response: users })
@@ -15,7 +17,7 @@ export const handleGetUsers = async (req, res) => {
   }
 }
 
-export const handleGetUser = async (req, res) => {
+export const handleGetUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
     const user = await getUserById(userId)
@@ -25,7 +27,7 @@ export const handleGetUser = async (req, res) => {
   }
 }
 
-export const handleUserCreate = async (req, res) => {
+export const handleUserCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
     const user = await createUser(body)
@@ -35,7 +37,7 @@ export const handleUserCreate = async (req, res) => {
   }
 }
 
-export const handleUserUpdate = async (req, res) => {
+export const handleUserUpdate = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
     const body = req.body
@@ -46,7 +48,7 @@ export const handleUserUpdate = async (req, res) => {
   }
 }
 
-export const handleUserDelete = async (req, res) => {
+export const handleUserDelete = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
     const user = await deleteUser(userId)

@@ -1,3 +1,5 @@
+import { Request, Response } from 'express'
+
 import {
   createArtist,
   deleteArtist,
@@ -6,7 +8,7 @@ import {
   updateArtist,
 } from '../usecases/artist'
 
-export const handleGetArtists = async (req, res) => {
+export const handleGetArtists = async (req: Request, res: Response) => {
   try {
     const artists = await getAllArtists()
     res.send({ response: artists })
@@ -15,7 +17,7 @@ export const handleGetArtists = async (req, res) => {
   }
 }
 
-export const handleGetArtist = async (req, res) => {
+export const handleGetArtist = async (req: Request, res: Response) => {
   try {
     const { artistId } = req.params
     const artist = await getArtistById(artistId)
@@ -25,7 +27,7 @@ export const handleGetArtist = async (req, res) => {
   }
 }
 
-export const handleArtistCreate = async (req, res) => {
+export const handleArtistCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
     const artist = await createArtist(body)
@@ -35,7 +37,7 @@ export const handleArtistCreate = async (req, res) => {
   }
 }
 
-export const handleArtistUpdate = async (req, res) => {
+export const handleArtistUpdate = async (req: Request, res: Response) => {
   try {
     const { artistId } = req.params
     const body = req.body
@@ -46,7 +48,7 @@ export const handleArtistUpdate = async (req, res) => {
   }
 }
 
-export const handleArtistDelete = async (req, res) => {
+export const handleArtistDelete = async (req: Request, res: Response) => {
   try {
     const { artistId } = req.params
     const artist = await deleteArtist(artistId)

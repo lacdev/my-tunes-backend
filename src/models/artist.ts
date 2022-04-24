@@ -9,15 +9,20 @@ export interface Artist {
   country: string
   albums?: Album[]
   songs?: Song[]
+  topSongs?: Song[]
 }
 
-const artistSchema = new Schema<Artist>({
-  name: { type: String, required: true },
-  lastName: { type: String },
-  country: { type: String },
-  albums: [{ type: Schema.Types.ObjectId, required: true, ref: 'album' }],
-  songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
-})
+const artistSchema = new Schema<Artist>(
+  {
+    name: { type: String, required: true },
+    lastName: { type: String },
+    country: { type: String },
+    albums: [{ type: Schema.Types.ObjectId, required: true, ref: 'album' }],
+    songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
+    topSongs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
+  },
+  { timestamps: true }
+)
 
 export const ArtistModel = model<Artist>('artist', artistSchema)
 

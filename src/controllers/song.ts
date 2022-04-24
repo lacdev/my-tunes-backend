@@ -1,3 +1,5 @@
+import { Request, Response } from 'express'
+
 import {
   createSong,
   deleteSong,
@@ -6,7 +8,7 @@ import {
   updateSong,
 } from '../usecases/song'
 
-export const handleGetSongs = async (req, res) => {
+export const handleGetSongs = async (req: Request, res: Response) => {
   try {
     const songs = await getAllSongs()
     res.send({ response: songs })
@@ -15,7 +17,7 @@ export const handleGetSongs = async (req, res) => {
   }
 }
 
-export const handleGetSong = async (req, res) => {
+export const handleGetSong = async (req: Request, res: Response) => {
   try {
     const { songId } = req.params
     const song = await getSongById(songId)
@@ -25,7 +27,7 @@ export const handleGetSong = async (req, res) => {
   }
 }
 
-export const handleSongCreate = async (req, res) => {
+export const handleSongCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
     const song = await createSong(body)
@@ -35,7 +37,7 @@ export const handleSongCreate = async (req, res) => {
   }
 }
 
-export const handleSongUpdate = async (req, res) => {
+export const handleSongUpdate = async (req: Request, res: Response) => {
   try {
     const { songId } = req.params
     const body = req.body
@@ -46,7 +48,7 @@ export const handleSongUpdate = async (req, res) => {
   }
 }
 
-export const handleSongDelete = async (req, res) => {
+export const handleSongDelete = async (req: Request, res: Response) => {
   try {
     const { songId } = req.params
     const song = await deleteSong(songId)

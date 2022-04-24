@@ -5,9 +5,12 @@ export interface Genre {
   description: string
 }
 
-const genreSchema = new Schema<Genre>({
-  description: { type: String, required: true },
-})
+const genreSchema = new Schema<Genre>(
+  {
+    description: { type: String, required: true },
+  },
+  { timestamps: true }
+)
 
 export const GenreModel = model<Genre>('genre', genreSchema)
 

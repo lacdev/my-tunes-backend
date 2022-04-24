@@ -8,5 +8,9 @@ const DB_HOST = process.env.DB_HOST
 const URL = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
 
 export const run = async () => {
-  await connect(URL)
+  try {
+    return await connect(URL)
+  } catch (e) {
+    console.error(e)
+  }
 }

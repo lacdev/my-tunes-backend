@@ -5,18 +5,22 @@ export interface User {
   username: string
   email: string
   password: string
-  type: 'admin' | 'customer'
+  isAdmin: boolean
+  address?: string
 }
 
-const userSchema = new Schema<User>({
-  username: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  type: { type: String, required: true, default: 'customer' },
-})
+const UserSchema = new Schema<User>(
+  {
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    isAdmin: { type: Boolean, default: false },
+    address: { type: String, default: '' },
+  },
+  { timestamps: true }
+)
 
-export const UserModel = model<User>('user', userSchema)
-
+export const UserModel = model<User>('user', UserSchema)
 export interface LoginDTO {
   userName?: string
   email?: string
