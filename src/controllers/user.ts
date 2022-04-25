@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { GetUserAuthInfoRequest } from '../types/request'
 
 import {
   createUser,
@@ -17,10 +18,14 @@ export const handleGetUsers = async (req: Request, res: Response) => {
   }
 }
 
-export const handleGetUser = async (req: Request, res: Response) => {
+export const handleGetUser = async (
+  req: GetUserAuthInfoRequest,
+  res: Response
+) => {
   try {
-    const { userId } = req.params
-    const user = await getUserById(userId)
+    console.log('user object?', req.user)
+    // const { userId } = req.params
+    const user = await getUserById(req.user.id)
     res.send({ response: user })
   } catch (e) {
     console.error(e)

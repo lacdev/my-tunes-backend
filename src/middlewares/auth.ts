@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
 import { ApiError } from '../errors/ApiError'
 import jwt from 'jsonwebtoken'
+import { GetUserAuthInfoRequest } from '../types/request'
 
-const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const SECRET = process.env.JWT_SECRET
 
@@ -52,4 +57,17 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-export { verifyToken }
+export const verifyAdmin = async (
+  req: GetUserAuthInfoRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const { isAdmin } = req.user
+
+  if (isAdmin) {
+    next()
+  } else {
+    next(ApiError.forbidden('Not authorized to perform this action.'))
+    return
+  }
+}
