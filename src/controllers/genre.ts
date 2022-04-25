@@ -8,7 +8,7 @@ import {
   updateGenre,
 } from '../usecases/genre'
 
-export const handleGetGenres = async (req: Response, res: Response) => {
+export const handleGetGenres = async (req: Request, res: Response) => {
   try {
     const genres = await getAllGenres()
     res.send({ response: genres })

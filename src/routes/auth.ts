@@ -1,24 +1,10 @@
-import { Router, Request, Response } from 'express'
-import {
-  handleAlbumCreate,
-  handleAlbumUpdate,
-  handleGetAlbum,
-  handleGetAlbums,
-} from '../controllers/album'
-import { UserModel } from '../models/user'
+import { Router } from 'express'
+import { registerUser, loginUser } from '../controllers/auth'
 
 const router = Router()
 
-router.post('/register', (req: Request, res: Response) => {
-  const newUser = new UserModel({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-  })
-})
+router.post('/register', registerUser)
 
-router.post('/login', () => {
-  const newUser = new UserModel()
-})
+router.post('/login', loginUser)
 
 export { router as authRouter }
