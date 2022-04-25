@@ -81,7 +81,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
 
     const signedJWT = jwt.sign(payload, SECRET, {
       algorithm: 'HS256',
-      expiresIn: '1h',
+      expiresIn: '24h',
     })
 
     res.json({ token: signedJWT })

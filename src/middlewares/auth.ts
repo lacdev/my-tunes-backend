@@ -39,7 +39,7 @@ export const verifyToken = async (
     /* Req.user is going to be equal to the decoded identity object from the user.
      req.user = { 
       id: mongoId, 
-      username: user1
+      username: username
       isAdmin: boolean
     } */
 
@@ -62,12 +62,16 @@ export const verifyAdmin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { isAdmin } = req.user
-
-  if (isAdmin) {
-    next()
-  } else {
-    next(ApiError.forbidden('Not authorized to perform this action.'))
-    return
+  try {
+    const { isAdmin } = req.user
+    if (isAdmin) {
+      next()
+    } else {
+      next(ApiError.forbidden('Not authorized to perform this action.'))
+      return
+    }
+  } catch (e) {
+    console.error(e)
+    next({})
   }
 }

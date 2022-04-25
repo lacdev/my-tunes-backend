@@ -5,18 +5,16 @@ import { Song } from './song'
 export interface Artist {
   _id: string
   name: string
-  lastName: string
-  country: string
+  nationality: string
   albums?: Album[]
   songs?: Song[]
   topSongs?: Song[]
 }
 
-const artistSchema = new Schema<Artist>(
+const ArtistSchema = new Schema<Artist>(
   {
     name: { type: String, required: true },
-    lastName: { type: String },
-    country: { type: String },
+    nationality: { type: String },
     albums: [{ type: Schema.Types.ObjectId, required: true, ref: 'album' }],
     songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
     topSongs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
@@ -24,21 +22,19 @@ const artistSchema = new Schema<Artist>(
   { timestamps: true }
 )
 
-export const ArtistModel = model<Artist>('artist', artistSchema)
+export const ArtistModel = model<Artist>('artist', ArtistSchema)
 
 export interface getArtistByIdDTO {
   artistId: string
 }
 export interface CreateArtistDTO {
   name: string
-  lastName: string
-  country: string
+  nationality: string
 }
 export interface UpdateArtistDTO {
   artistId: string
   name: string
-  lastName: string
-  country: string
+  nationality: string
 }
 export interface deleteArtistDTO {
   artistId: string

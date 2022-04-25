@@ -11,7 +11,7 @@ import {
 export const handleGetGenres = async (req: Request, res: Response) => {
   try {
     const genres = await getAllGenres()
-    res.send({ response: genres })
+    res.send({ data: genres })
   } catch (e) {
     console.error(e)
   }
