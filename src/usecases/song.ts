@@ -1,5 +1,4 @@
 import { SongModel } from '../models/song'
-import { Types } from 'mongoose'
 
 export const getAllSongs = async () => {
   return await SongModel.find().populate({
@@ -19,8 +18,14 @@ export const getAllSongsByAlbumId = async (id: any) => {
   })
 }
 
+export const getSongByAlbumAndSongId = async (albumId: any, songId: any) => {
+  return await SongModel.find({ album: albumId, _id: songId }).populate({
+    path: 'artist album genre',
+  })
+}
+
 export const getAllSongsByArtistId = async (id: any) => {
-  return await SongModel.find({ artist: new Types.ObjectId(id) }).populate({
+  return await SongModel.find({ artist: id }).populate({
     path: 'artist album genre',
   })
 }

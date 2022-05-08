@@ -1,5 +1,4 @@
 import { AlbumModel } from '../models/album'
-import { Types } from 'mongoose'
 
 export const getAllAlbums = async () => {
   return await AlbumModel.find().populate({

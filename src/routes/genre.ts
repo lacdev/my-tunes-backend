@@ -1,4 +1,8 @@
 import { Router } from 'express'
+import { verifyAdmin, verifyToken } from '../middlewares/auth'
+import { handleGetPlaylistsByGenre } from '../controllers/playlist'
+import { handleGetAlbumsByGenre } from '../controllers/album'
+import { handleGetSongsByGenre } from '../controllers/song'
 import {
   handleGenreCreate,
   handleGenreDelete,
@@ -6,10 +10,6 @@ import {
   handleGetGenre,
   handleGetGenres,
 } from '../controllers/genre'
-import { handleGetPlaylistsByGenre } from '../controllers/playlist'
-import { handleGetAlbumsByGenre } from '../controllers/album'
-import { handleGetSongsByGenre } from '../controllers/song'
-import { verifyAdmin, verifyToken } from '../middlewares/auth'
 
 const router = Router()
 

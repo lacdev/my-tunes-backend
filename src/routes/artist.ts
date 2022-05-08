@@ -1,4 +1,7 @@
 import { Router } from 'express'
+import { verifyAdmin, verifyToken } from '../middlewares/auth'
+import { handleGetSongsByArtist } from '../controllers/song'
+import { handleGetAlbumsByArtist } from '../controllers/album'
 import {
   handleArtistCreate,
   handleArtistDelete,
@@ -6,9 +9,6 @@ import {
   handleGetArtist,
   handleGetArtists,
 } from '../controllers/artist'
-import { handleGetSongsByArtist } from '../controllers/song'
-import { handleGetAlbumsByArtist } from '../controllers/album'
-import { verifyAdmin, verifyToken } from '../middlewares/auth'
 
 const router = Router()
 

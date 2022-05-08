@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { verifyToken } from '../middlewares/auth'
 import {
   handleGetPlaylist,
   handleGetPlaylists,
@@ -6,7 +7,6 @@ import {
   handlePlaylistDelete,
   handlePlaylistUpdate,
 } from '../controllers/playlist'
-import { verifyToken } from '../middlewares/auth'
 
 const router = Router()
 

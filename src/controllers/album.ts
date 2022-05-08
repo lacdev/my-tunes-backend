@@ -14,7 +14,7 @@ export const handleGetAlbums = async (req: Request, res: Response) => {
     const albums = await getAllAlbums()
     res.send({ response: albums })
   } catch (e) {
-    console.error()
+    console.error(e)
   }
 }
 
@@ -25,18 +25,17 @@ export const handleGetAlbumsByGenre = async (req: Request, res: Response) => {
     const albums = await getAllAlbumsByGenreId(genreId)
     res.send({ response: albums })
   } catch (e) {
-    console.error()
+    console.error(e)
   }
 }
 
 export const handleGetAlbumsByArtist = async (req: Request, res: Response) => {
   try {
     const { artistId } = req.params
-
     const albums = await getAllAlbumsByArtistId(artistId)
     res.send({ response: albums })
   } catch (e) {
-    console.error()
+    console.error(e)
   }
 }
 

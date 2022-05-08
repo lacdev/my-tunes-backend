@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { verifyAdmin, verifyToken } from '../middlewares/auth'
 import {
   handleGetSong,
   handleGetSongs,
@@ -6,7 +7,6 @@ import {
   handleSongDelete,
   handleSongUpdate,
 } from '../controllers/song'
-import { verifyAdmin, verifyToken } from '../middlewares/auth'
 
 const router = Router()
 

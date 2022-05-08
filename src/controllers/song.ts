@@ -9,6 +9,7 @@ import {
   getAllSongsByGenreId,
   getAllSongsByArtistId,
   getAllSongsByAlbumId,
+  getSongByAlbumAndSongId,
 } from '../usecases/song'
 
 export const handleGetSongs = async (req: Request, res: Response) => {
@@ -23,7 +24,6 @@ export const handleGetSongs = async (req: Request, res: Response) => {
 export const handleGetSongsByGenre = async (req: Request, res: Response) => {
   try {
     const { genreId } = req.params
-
     const songs = await getAllSongsByGenreId(genreId)
     res.send({ response: songs })
   } catch (e) {
@@ -57,6 +57,19 @@ export const handleGetSong = async (req: Request, res: Response) => {
   try {
     const { songId } = req.params
     const song = await getSongById(songId)
+    res.send({ response: song })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleGetSongByAlbumAndSongId = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { albumId, songId } = req.params
+    const song = await getSongByAlbumAndSongId(albumId, songId)
     res.send({ response: song })
   } catch (e) {
     console.error(e)
