@@ -13,6 +13,7 @@ export interface Album {
   genre: Genre
   stock: number
   image: string
+  label: string
 }
 
 const albumSchema = new Schema<Album>(
@@ -20,6 +21,7 @@ const albumSchema = new Schema<Album>(
     title: { type: String, required: true },
     artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },
     releaseDate: { type: Date, required: true, default: new Date() },
+    label: { type: String, required: true },
     songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
     price: { type: Number, required: true },
     genre: { type: Schema.Types.ObjectId, ref: 'genre', required: true },

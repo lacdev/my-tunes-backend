@@ -6,13 +6,20 @@ import {
   handleSongDelete,
   handleSongUpdate,
 } from '../controllers/song'
+import { verifyAdmin, verifyToken } from '../middlewares/auth'
 
 const router = Router()
 
 router.get('/', handleGetSongs)
 router.get('/:songId', handleGetSong)
-router.post('/', handleSongCreate)
-router.patch('/:songId', handleSongUpdate)
-router.delete('/:songId', handleSongDelete)
+router.post('/', verifyToken, verifyAdmin, handleSongCreate)
+router.patch('/:songId', verifyToken, verifyAdmin, handleSongUpdate)
+router.delete(
+  '/:songId',
+  verifyToken,
+  verifyToken,
+  verifyAdmin,
+  handleSongDelete
+)
 
 export { router as songRouter }
