@@ -5,16 +5,16 @@ import { Genre } from './genre'
 
 export interface Playlist {
   _id: string
-  name: string
-  userId: User
+  title: string
+  userId?: User
   songs?: Song[]
   genres: Genre[]
 }
 
 const playlistSchema = new Schema<Playlist>(
   {
-    name: { type: String, required: true },
-    userId: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
+    title: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: 'user' }, //required: true,
     songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
     genres: [{ type: Schema.Types.ObjectId, required: true, ref: 'genre' }],
   },

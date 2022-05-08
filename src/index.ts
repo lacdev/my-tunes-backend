@@ -14,6 +14,7 @@ import { authRouter } from './routes/auth'
 import { playlistRouter } from './routes/playlists'
 
 const app = express()
+const PORT = process.env.PORT || 8013
 
 // Middlewares
 app.use(cors())
@@ -32,9 +33,8 @@ app.use('/api/auth', authRouter)
 app.use('/api/playlists', playlistRouter)
 
 // Health endpoint
-app.get('/', (_, res) => res.send({ response: 'Hello world' }))
 
-const PORT = process.env.PORT || 8013
+app.get('/', (_, res) => res.send({ response: 'Hello world' }))
 
 dbConnection()
   .then(() => {
@@ -48,7 +48,7 @@ dbConnection()
 //Errors Global Middleware
 app.use(ApiErrorHandler)
 
-// Gracefully restarts on unhandled errors and uncaught promises
+// For unhandled promises and uncaught exceptions
 
 process.on('uncaughtException', (err) => {
   console.log(colors.red(`ERROR: ${err}`))

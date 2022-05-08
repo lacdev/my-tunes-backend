@@ -6,11 +6,47 @@ import {
   getAllSongs,
   getSongById,
   updateSong,
+  getAllSongsByGenreId,
+  getAllSongsByArtistId,
+  getAllSongsByAlbumId,
 } from '../usecases/song'
 
 export const handleGetSongs = async (req: Request, res: Response) => {
   try {
     const songs = await getAllSongs()
+    res.send({ response: songs })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleGetSongsByGenre = async (req: Request, res: Response) => {
+  try {
+    const { genreId } = req.params
+
+    const songs = await getAllSongsByGenreId(genreId)
+    res.send({ response: songs })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleGetSongsByAlbum = async (req: Request, res: Response) => {
+  try {
+    const { albumId } = req.params
+
+    const songs = await getAllSongsByAlbumId(albumId)
+    res.send({ response: songs })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleGetSongsByArtist = async (req: Request, res: Response) => {
+  try {
+    const { artistId } = req.params
+
+    const songs = await getAllSongsByArtistId(artistId)
     res.send({ response: songs })
   } catch (e) {
     console.error(e)

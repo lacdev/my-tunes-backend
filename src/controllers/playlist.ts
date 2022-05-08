@@ -5,11 +5,26 @@ import {
   createPlaylist,
   deletePlaylist,
   updatePlaylist,
+  getAllPlaylistsByGenreId,
 } from '../usecases/playlist'
 
 export const handleGetPlaylists = async (req: Request, res: Response) => {
   try {
     const playlists = await getAllPlaylists()
+    res.send({ response: playlists })
+  } catch (e) {
+    console.error()
+  }
+}
+
+export const handleGetPlaylistsByGenre = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { genreId } = req.params
+
+    const playlists = await getAllPlaylistsByGenreId(genreId)
     res.send({ response: playlists })
   } catch (e) {
     console.error()

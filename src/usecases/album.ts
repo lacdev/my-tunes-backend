@@ -1,11 +1,28 @@
 import { AlbumModel } from '../models/album'
+import { Types } from 'mongoose'
 
 export const getAllAlbums = async () => {
-  return await AlbumModel.find()
+  return await AlbumModel.find().populate({
+    path: 'songs artist genre',
+  })
+}
+
+export const getAllAlbumsByGenreId = async (id: any) => {
+  return await AlbumModel.find({ genre: id }).populate({
+    path: 'artist songs genre',
+  })
+}
+
+export const getAllAlbumsByArtistId = async (id: any) => {
+  return await AlbumModel.find({ artist: id }).populate({
+    path: 'artist songs genre',
+  })
 }
 
 export const getAlbumById = async (id: any) => {
-  return await AlbumModel.findById(id)
+  return await AlbumModel.findById(id).populate({
+    path: 'songs artist genre',
+  })
 }
 
 export const createAlbum = async (body: any) => {
