@@ -5,7 +5,7 @@ export interface Genre {
   name: string
 }
 
-const genreSchema = new Schema<Genre>(
+export const genreSchema = new Schema<Genre>(
   {
     name: { type: String, required: true },
   },

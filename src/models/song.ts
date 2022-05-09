@@ -17,7 +17,7 @@ export interface Song {
   duration?: number
 }
 
-const songSchema = new Schema<Song>({
+export const songSchema = new Schema<Song>({
   title: { type: String, required: true },
   artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },
   releaseDate: { type: Date, required: true, default: new Date() },

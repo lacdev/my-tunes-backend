@@ -12,7 +12,7 @@ export interface Artist {
   // topSongs?: Song[]
 }
 
-const ArtistSchema = new Schema<Artist>(
+export const ArtistSchema = new Schema<Artist>(
   {
     name: { type: String, required: true },
     country: { type: String },

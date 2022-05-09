@@ -6,7 +6,7 @@ import { Song } from './song'
 
 export interface Transaction {}
 
-const transactionSchema = new Schema(
+export const transactionSchema = new Schema(
   {
     customerId: String,
   },

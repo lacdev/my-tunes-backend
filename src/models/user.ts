@@ -1,5 +1,27 @@
 import { Schema, model } from 'mongoose'
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateUserInput:
+ *       type: object
+ *       required:
+ *       - username
+ *       - email
+ *       - password
+ *       properties:
+ *         email:
+ *           type: string
+ *           default: jane.doe@example.com
+ *         username:
+ *           type: string
+ *           default: jane.doe
+ *         password:
+ *           type: string
+ *           default: password123
+ */
+
 export interface User {
   _id: string
   username: string
@@ -10,7 +32,7 @@ export interface User {
   avatar?: string
 }
 
-const UserSchema = new Schema<User>(
+export const UserSchema = new Schema<User>(
   {
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },

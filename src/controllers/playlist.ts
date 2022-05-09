@@ -6,6 +6,8 @@ import {
   deletePlaylist,
   updatePlaylist,
   getAllPlaylistsByGenreId,
+  addSongToPlaylist,
+  deleteSongFromPlaylist,
 } from '../usecases/playlist'
 
 export const handleGetPlaylists = async (req: Request, res: Response) => {
@@ -45,6 +47,32 @@ export const handlePlaylistCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
     const playlist = await createPlaylist(body)
+    res.send({ status: 200, response: playlist })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleAddSongToPlaylist = async (req: Request, res: Response) => {
+  try {
+    const { playlistId } = req.params
+    const body = req.body
+    const playlist = await addSongToPlaylist(playlistId, body.songs)
+    res.send({ status: 200, response: playlist })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleDeleteSongFromPlaylist = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { playlistId, songId } = req.params
+    console.log('Params playlist getting correctly?', playlistId)
+    console.log('Params song getting correctly?', songId)
+    const playlist = await deleteSongFromPlaylist(playlistId, songId)
     res.send({ status: 200, response: playlist })
   } catch (e) {
     console.error(e)

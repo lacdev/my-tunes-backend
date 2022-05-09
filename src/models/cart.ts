@@ -10,7 +10,7 @@ export interface Cart {
   total: number
 }
 
-const CartSchema = new Schema<Cart>(
+export const CartSchema = new Schema<Cart>(
   {
     customerId: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
     items: [

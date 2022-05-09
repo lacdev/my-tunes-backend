@@ -12,6 +12,7 @@ import { albumRouter } from './routes/album'
 import { userRouter } from './routes/user'
 import { authRouter } from './routes/auth'
 import { playlistRouter } from './routes/playlists'
+import swaggerDocs from './modules/swagger'
 
 const app = express()
 const PORT = process.env.PORT || 8013
@@ -34,14 +35,30 @@ app.use('/api/playlists', playlistRouter)
 
 // Health endpoint
 
+/**
+ * @openapi
+ *
+ *
+ * /:
+ *  get:
+ *    tags:
+ *      - Health Check endpoint
+ *    description: Response if the server is up and running
+ *    responses:
+ *      200:
+ *        description: Hello World
+ *
+ */
+
 app.get('/', (_, res) => res.send({ response: 'Hello world' }))
 
 dbConnection()
   .then(() => {
     console.log(colors.cyan('Database connection success'))
-    app.listen(PORT, () =>
+    app.listen(PORT, () => {
       console.log(colors.yellow(`Server is up and listening on port ${PORT}`))
-    )
+      swaggerDocs(app, PORT)
+    })
   })
   .catch((err) => console.log(colors.red(`${err.message}`)))
 

@@ -11,7 +11,7 @@ export interface Playlist {
   genres: Genre[]
 }
 
-const playlistSchema = new Schema<Playlist>(
+export const playlistSchema = new Schema<Playlist>(
   {
     title: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'user' }, //required: true,

@@ -1,4 +1,6 @@
 import { PlaylistModel } from '../models/playlist'
+import { SongModel } from '../models/song'
+import { Types } from 'mongoose'
 
 export const getAllPlaylists = async () => {
   return await PlaylistModel.find().populate({
@@ -24,6 +26,25 @@ export const createPlaylist = async (body: any) => {
 
 export const updatePlaylist = async (id: any, body: any) => {
   return await PlaylistModel.findByIdAndUpdate(id, body, { new: true })
+}
+
+export const addSongToPlaylist = async (id: any, body: any) => {
+  return await PlaylistModel.findByIdAndUpdate(
+    id,
+    { $push: { songs: body } },
+    { new: true }
+  )
+}
+
+export const deleteSongFromPlaylist = async (playlistId: any, songId: any) => {
+  console.log('song id in delete handler', songId)
+  console.log('playlist id in delete handler', playlistId)
+
+  return await PlaylistModel.findByIdAndUpdate(
+    playlistId,
+    { $pull: { songs: new Types.ObjectId(songId).toString() } },
+    { new: true }
+  )
 }
 
 export const deletePlaylist = async (id: any) => {

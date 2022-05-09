@@ -12,7 +12,7 @@ export interface Address {
   isDefault: boolean
 }
 
-const AddressSchema = new Schema<Address>(
+export const AddressSchema = new Schema<Address>(
   {
     userId: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
     street: { type: String, required: true },

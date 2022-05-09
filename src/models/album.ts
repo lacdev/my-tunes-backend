@@ -14,7 +14,7 @@ export interface Album {
   label?: string
 }
 
-const albumSchema = new Schema<Album>(
+export const albumSchema = new Schema<Album>(
   {
     title: { type: String, required: true },
     artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },

@@ -13,6 +13,21 @@ import {
 
 const router = Router()
 
+/**
+ * @openapi
+ *
+ *
+ * /api/albums:
+ *  get:
+ *    tags:
+ *      - Get All Albums
+ *    description: Response if user access albums
+ *    responses:
+ *      200:
+ *        description: Albums are up and running
+ *
+ */
+
 router.get('/', handleGetAlbums)
 router.get('/:albumId', handleGetAlbum)
 router.get('/:albumId/songs', handleGetSongsByAlbum)
