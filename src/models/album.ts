@@ -19,7 +19,7 @@ export const albumSchema = new Schema<Album>(
     title: { type: String, required: true },
     artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },
     releaseDate: { type: Date, required: true, default: new Date() },
-    label: { type: String, required: true },
+    // label: { type: String, required: true },
     songs: [{ type: Schema.Types.ObjectId, ref: 'song' }],
     genre: { type: Schema.Types.ObjectId, ref: 'genre', required: true },
     image: { type: String, required: true },

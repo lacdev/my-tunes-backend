@@ -6,8 +6,8 @@ export interface Product {
   _id: string
   description: string
   album: Album
-  genre: Genre
-  image: string
+  // genre: Genre
+  // image: string
   format: 'cassette' | 'vinyl' | 'CD'
   price: number
   stock: number
@@ -17,8 +17,8 @@ export const ProductSchema = new Schema<Product>(
   {
     description: { type: String, required: true },
     album: { type: Schema.Types.ObjectId, required: true, ref: 'album' },
-    genre: { type: Schema.Types.ObjectId, required: true, ref: 'genre' },
-    image: [{ type: String }],
+    // genre: { type: Schema.Types.ObjectId, required: true, ref: 'genre' },
+    // image: [{ type: String }],
     format: { type: String, required: true },
     price: { type: Number, required: true, default: 0 },
     stock: { type: Number, default: 0 },
