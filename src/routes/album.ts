@@ -34,7 +34,7 @@ router.get('/', handleGetAlbums)
  * @openapi
  *
  *
- * /api/albums:
+ * /api/albums/{albumId}:
  *  get:
  *    tags:
  *      - Get All Albums
@@ -51,7 +51,7 @@ router.get('/:albumId', handleGetAlbum)
  * @openapi
  *
  *
- * /api/albums:
+ * /api/albums/{albumId}/songs:
  *  get:
  *    tags:
  *      - Get All Albums
@@ -67,7 +67,7 @@ router.get('/:albumId/songs', handleGetSongsByAlbum)
  * @openapi
  *
  *
- * /api/albums:
+ * /api/albums/{albumId}/songs/{songId}:
  *  get:
  *    tags:
  *      - Get All Albums
@@ -84,7 +84,7 @@ router.get('/:albumId/songs/:songId', handleGetSongByAlbumAndSongId)
  *
  *
  * /api/albums:
- *  get:
+ *  post:
  *    tags:
  *      - Get All Albums
  *    description: Response if user access albums
@@ -99,8 +99,8 @@ router.post('/', verifyToken, verifyAdmin, handleAlbumCreate)
  * @openapi
  *
  *
- * /api/albums:
- *  get:
+ * /api/albums/{albumId}:
+ *  patch:
  *    tags:
  *      - Get All Albums
  *    description: Response if user access albums
@@ -115,8 +115,8 @@ router.patch('/:albumId', verifyToken, verifyAdmin, handleAlbumUpdate)
  * @openapi
  *
  *
- * /api/albums:
- *  get:
+ * /api/albums/{albumId}:
+ *  delete:
  *    tags:
  *      - Get All Albums
  *    description: Response if user access albums
