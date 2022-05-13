@@ -27,7 +27,7 @@ const registerUser = async (
       password: hashedPassword,
       email,
       avatar: avatarUrl,
-      // isAdmin: true,
+      isAdmin: true,
     })
 
     if (savedUser) {

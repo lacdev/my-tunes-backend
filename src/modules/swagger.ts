@@ -40,5 +40,5 @@ export default function swaggerDocs(app: Express, port: number | string) {
     res.send(specs)
   })
 
-  console.log(colors.magenta(`Docs available at http://localhost:11013/docs `))
+  console.log(colors.magenta(`Docs available at http://localhost:8013/docs `))
 }

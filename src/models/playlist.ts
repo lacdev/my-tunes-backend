@@ -8,7 +8,7 @@ export interface Playlist {
   title: string
   userId?: User
   songs?: Song[]
-  genres: Genre[]
+  genre: Genre
 }
 
 export const playlistSchema = new Schema<Playlist>(
@@ -16,7 +16,7 @@ export const playlistSchema = new Schema<Playlist>(
     title: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'user' }, //required: true,
     songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
-    genres: [{ type: Schema.Types.ObjectId, required: true, ref: 'genre' }],
+    genre: { type: Schema.Types.ObjectId, required: true, ref: 'genre' },
   },
   { timestamps: true }
 )
