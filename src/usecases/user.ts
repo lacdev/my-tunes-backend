@@ -9,7 +9,7 @@ export const getUser = async (query: object) => {
 }
 
 export const getUserById = async (id: any) => {
-  return await UserModel.findById(id)
+  return await UserModel.findById(id).select('avatar username isAdmin')
 }
 
 export const createUser = async (body: any) => {
