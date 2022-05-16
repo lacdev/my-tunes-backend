@@ -7,9 +7,10 @@ export interface Cart {
   _id: string
   customerId: User
   items: Song[] | Album[]
+  total: number
 }
 
-const CartSchema = new Schema<Cart>(
+export const CartSchema = new Schema<Cart>(
   {
     customerId: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
     items: [
@@ -19,10 +20,13 @@ const CartSchema = new Schema<Cart>(
         },
         quantity: {
           type: Number,
-          default: 1,
         },
       },
     ],
+    total: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 )

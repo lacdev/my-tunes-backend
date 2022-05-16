@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-const DEFAULT_SALT_ROUNDS = 10
+const DEFAULT_SALT_ROUNDS: number = 10
 
 export const hashPassword = async (password: string) =>
   await bcrypt.hash(password, DEFAULT_SALT_ROUNDS)

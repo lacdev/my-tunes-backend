@@ -1,37 +1,46 @@
 import { Schema, model } from 'mongoose'
+import { Album } from './album'
+import { Artist } from './artist'
+import { Genre } from './genre'
 
-export interface User {
+export interface Product {
   _id: string
-  title: string
   description: string
-  category: []
+  album: Album
+  genre: Genre
+  artist: Artist
+  format: 'cassette' | 'vinyl' | 'CD'
   price: number
-  image: string
+  stock: number
 }
 
-const ProductSchema = new Schema<User>(
+export const ProductSchema = new Schema<Product>(
   {
-    title: { type: String, required: true, unique: true },
-    description: { type: String, required: true, unique: true },
-    price: { type: Number, required: true },
-    image: { type: String },
+    description: { type: String, required: true },
+    album: { type: Schema.Types.ObjectId, required: true, ref: 'album' },
+    genre: { type: Schema.Types.ObjectId, required: true, ref: 'genre' },
+    artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },
+    format: { type: String, required: true },
+    price: { type: Number, required: true, default: 0 },
+    stock: { type: Number, default: 0 },
   },
   { timestamps: true }
 )
 
-export const UserModel = model<User>('product', ProductSchema)
-export interface LoginDTO {
-  userName?: string
-  email?: string
-  password: string
-}
+export const ProductModel = model<Product>('product', ProductSchema)
 
-export interface LoginEmailDTO {
-  email: string
-  password: string
-}
+// export interface LoginDTO {
+//   userName?: string
+//   email?: string
+//   password: string
+// }
 
-export interface LoginUsernameDTO {
-  userName: string
-  password: string
-}
+// export interface LoginEmailDTO {
+//   email: string
+//   password: string
+// }
+
+// export interface LoginUsernameDTO {
+//   userName: string
+//   password: string
+// }

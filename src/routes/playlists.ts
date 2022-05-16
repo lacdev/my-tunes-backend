@@ -1,15 +1,14 @@
 import { Router } from 'express'
-import { verifyAdmin, verifyToken } from '../middlewares/auth'
+import { verifyToken } from '../middlewares/auth'
 import {
-  handleAlbumCreate,
-  handleAlbumUpdate,
-  handleGetAlbum,
-  handleGetAlbums,
-} from '../controllers/album'
-import {
-  handleGetSongsByAlbum,
-  handleGetSongByAlbumAndSongId,
-} from '../controllers/song'
+  handleGetPlaylist,
+  handleGetPlaylists,
+  handlePlaylistCreate,
+  handlePlaylistDelete,
+  handlePlaylistUpdate,
+  handleAddSongToPlaylist,
+  handleDeleteSongFromPlaylist,
+} from '../controllers/playlist'
 
 const router = Router()
 
@@ -17,114 +16,112 @@ const router = Router()
  * @openapi
  *
  *
- * /api/albums:
+ * /api/playlists:
  *  get:
  *    tags:
- *      - Get All Albums
+ *      - Get All Playlists
  *    description: Response if user access albums
  *    responses:
  *      200:
  *        description: Albums are up and running
  *
  */
-
-router.get('/', handleGetAlbums)
+router.get('/', handleGetPlaylists)
 
 /**
  * @openapi
  *
  *
- * /api/albums/{albumId}:
+ * /api/playlists/{playlistId}:
  *  get:
  *    tags:
- *      - Get All Albums
+ *      - Get All Playlists
  *    description: Response if user access albums
  *    responses:
  *      200:
  *        description: Albums are up and running
  *
  */
-
-router.get('/:albumId', handleGetAlbum)
-
-/**
- * @openapi
- *
- *
- * /api/albums/{albumId}/songs:
- *  get:
- *    tags:
- *      - Get All Albums
- *    description: Response if user access albums
- *    responses:
- *      200:
- *        description: Albums are up and running
- *
- */
-router.get('/:albumId/songs', handleGetSongsByAlbum)
+router.get('/:playlistId', handleGetPlaylist)
 
 /**
  * @openapi
  *
  *
- * /api/albums/{albumId}/songs/{songId}:
- *  get:
- *    tags:
- *      - Get All Albums
- *    description: Response if user access albums
- *    responses:
- *      200:
- *        description: Albums are up and running
- *
- */
-router.get('/:albumId/songs/:songId', handleGetSongByAlbumAndSongId)
-
-/**
- * @openapi
- *
- *
- * /api/albums:
+ * /api/playlists/:
  *  post:
  *    tags:
- *      - Get All Albums
+ *      - Get All Playlists
  *    description: Response if user access albums
  *    responses:
  *      200:
  *        description: Albums are up and running
  *
  */
-router.post('/', verifyToken, verifyAdmin, handleAlbumCreate)
+router.post('/', verifyToken, handlePlaylistCreate)
 
 /**
  * @openapi
  *
  *
- * /api/albums/{albumId}:
+ * /api/playlists/songs:
  *  patch:
  *    tags:
- *      - Get All Albums
+ *      - Get All Playlists
  *    description: Response if user access albums
  *    responses:
  *      200:
  *        description: Albums are up and running
  *
  */
-router.patch('/:albumId', verifyToken, verifyAdmin, handleAlbumUpdate)
+router.patch('/:playlistId/songs', handleAddSongToPlaylist)
 
 /**
  * @openapi
  *
  *
- * /api/albums/{albumId}:
+ * /api/playlistId/songs/{songId}:
  *  delete:
  *    tags:
- *      - Get All Albums
+ *      - Get All Playlists
  *    description: Response if user access albums
  *    responses:
  *      200:
  *        description: Albums are up and running
  *
  */
-router.delete('/:albumId', verifyToken, verifyAdmin, handleAlbumUpdate)
+router.delete('/:playlistId/songs/:songId', handleDeleteSongFromPlaylist)
 
-export { router as albumRouter }
+/**
+ * @openapi
+ *
+ *
+ * /api/playlists/{playlistId}:
+ *  patch:
+ *    tags:
+ *      - Get All Playlists
+ *    description: Response if user access albums
+ *    responses:
+ *      200:
+ *        description: Albums are up and running
+ *
+ */
+router.patch('/:playlistId', verifyToken, handlePlaylistUpdate)
+
+/**
+ * @openapi
+ *
+ *
+ * /api/playlists/{playlistId}:
+ *  delete:
+ *    tags:
+ *      - Get All Playlists
+ *    description: Response if user access albums
+ *    responses:
+ *      200:
+ *        description: Albums are up and running
+ *
+ */
+router.delete('/:playlistId', verifyToken, handlePlaylistDelete)
+
+export { router as playlistRouter }

@@ -8,22 +8,20 @@ export interface Album {
   title: string
   artist: Artist
   releaseDate: Date
-  songs: Song[]
-  price: number
+  songs?: Song[]
   genre: Genre
-  stock: number
-  image: string
+  image?: string
+  label?: string
 }
 
-const albumSchema = new Schema<Album>(
+export const albumSchema = new Schema<Album>(
   {
     title: { type: String, required: true },
     artist: { type: Schema.Types.ObjectId, required: true, ref: 'artist' },
     releaseDate: { type: Date, required: true, default: new Date() },
-    songs: [{ type: Schema.Types.ObjectId, required: true, ref: 'song' }],
-    price: { type: Number, required: true },
+    // label: { type: String, required: true },
+    songs: [{ type: Schema.Types.ObjectId, ref: 'song' }],
     genre: { type: Schema.Types.ObjectId, ref: 'genre', required: true },
-    stock: { type: Number, required: true },
     image: { type: String, required: true },
   },
   { timestamps: true }

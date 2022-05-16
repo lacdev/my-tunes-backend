@@ -2,12 +2,12 @@ import { Schema, model } from 'mongoose'
 
 export interface Genre {
   _id: string
-  description: string
+  name: string
 }
 
-const genreSchema = new Schema<Genre>(
+export const genreSchema = new Schema<Genre>(
   {
-    description: { type: String, required: true },
+    name: { type: String, required: true },
   },
   { timestamps: true }
 )
@@ -18,11 +18,11 @@ export interface getGenreByIdDTO {
   genreId: string
 }
 export interface CreateGenreDTO {
-  description: string
+  name: string
 }
 export interface UpdateGenreDTO {
   genreId: string
-  description: string
+  name: string
 }
 export interface deleteGenreDTO {
   genreId: string

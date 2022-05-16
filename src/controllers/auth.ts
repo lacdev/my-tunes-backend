@@ -27,7 +27,7 @@ const registerUser = async (
       password: hashedPassword,
       email,
       avatar: avatarUrl,
-      //   isAdmin: true,
+      isAdmin: true,
     })
 
     if (savedUser) {
@@ -74,9 +74,10 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const SECRET = process.env.JWT_SECRET
 
     const payload = {
-      user: user.username,
-      isAdmin: user.isAdmin,
       id: user._id,
+      user: user.username,
+      avatar: user.avatar,
+      isAdmin: user.isAdmin,
     }
 
     const signedJWT = jwt.sign(payload, SECRET, {
