@@ -19,10 +19,38 @@ export const getAllAlbumsByArtistId = async (id: any) => {
 }
 
 export const getAlbumById = async (id: any) => {
-  return await AlbumModel.findById(id).populate({
-    path: 'songs artist genre',
-  })
+  return await AlbumModel.findById(id)
+    .populate('artist')
+    .populate('genre')
+    .populate({
+      path: 'songs',
+      populate: {
+        path: 'artist genre album',
+      },
+    })
 }
+
+// ['artist', 'genre', 'songs'],
+
+// .populate({
+//   path: 'pages',
+//   populate: [{
+//    path: 'components',
+//    model: 'Component'
+//   },{
+//     path: 'AnotherRef',
+//     model: 'AnotherRef',
+//     select: 'firstname lastname'
+//   }]
+// })
+
+// .populate({
+//   path: 'pages',
+//   populate: {
+//     path: 'components',
+//     model: 'Component'
+//   }
+// })
 
 export const createAlbum = async (body: any) => {
   return await AlbumModel.create(body)

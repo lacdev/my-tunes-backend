@@ -2,31 +2,31 @@ import { ProductModel } from '../models/product'
 
 export const getAllProducts = async () => {
   return await ProductModel.find().populate({
-    path: 'songs artist genre',
+    path: 'album',
   })
 }
 
 export const getAllProductsByGenreId = async (id: any) => {
   return await ProductModel.find({ genre: id }).populate({
-    path: 'artist songs genre',
+    path: 'album',
   })
 }
 
 export const getAllProductsByFormat = async (format: any) => {
   return await ProductModel.find({ format: format }).populate({
-    path: 'artist songs genre',
+    path: 'album',
   })
 }
 
 export const getAllProductsByArtistId = async (id: any) => {
   return await ProductModel.find({ artist: id }).populate({
-    path: 'artist songs genre',
+    path: 'album',
   })
 }
 
 export const getProductById = async (id: any) => {
   return await ProductModel.findById(id).populate({
-    path: 'songs artist genre',
+    path: 'album',
   })
 }
 

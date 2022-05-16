@@ -25,6 +25,7 @@ export const handleGetSongsByGenre = async (req: Request, res: Response) => {
   try {
     const { genreId } = req.params
     const songs = await getAllSongsByGenreId(genreId)
+
     res.send({ response: songs })
   } catch (e) {
     console.error(e)

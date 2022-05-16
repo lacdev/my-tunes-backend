@@ -10,6 +10,7 @@ import {
   handleGetGenre,
   handleGetGenres,
 } from '../controllers/genre'
+import { handleGetProductsByGenre } from '../controllers/product'
 
 const router = Router()
 
@@ -60,6 +61,22 @@ router.get('/:genreId', handleGetGenre)
  *
  */
 router.get('/:genreId/songs', handleGetSongsByGenre)
+
+/**
+ * @openapi
+ *
+ *
+ * /api/genres/{genreId}/products:
+ *  get:
+ *    tags:
+ *      - Get all Genres
+ *    description: Response if user access albums
+ *    responses:
+ *      200:
+ *        description: Albums are up and running
+ *
+ */
+router.get('/:genreId/products', handleGetProductsByGenre)
 
 /**
  * @openapi

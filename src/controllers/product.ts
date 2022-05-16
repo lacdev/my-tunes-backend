@@ -19,63 +19,80 @@ export const handleGetProducts = async (req: Request, res: Response) => {
   }
 }
 
-export const handleGetAlbumsByGenre = async (req: Request, res: Response) => {
+export const handleGetProductsByGenre = async (req: Request, res: Response) => {
   try {
     const { genreId } = req.params
 
-    const albums = await getAllProductsByGenreId(genreId)
-    res.send({ response: albums })
+    const products = await getAllProductsByGenreId(genreId)
+    res.send({ response: products })
   } catch (e) {
     console.error(e)
   }
 }
 
-export const handleGetAlbumsByArtist = async (req: Request, res: Response) => {
+export const handleGetProductsByFormat = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { format } = req.query
+
+    const products = await getAllProductsByFormat(format)
+    res.send({ response: products })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const handleGetProductsByArtist = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const { artistId } = req.params
-    const albums = await getAllProductsByArtistId(artistId)
-    res.send({ response: albums })
+    const products = await getAllProductsByArtistId(artistId)
+    res.send({ response: products })
   } catch (e) {
     console.error(e)
   }
 }
 
-export const handleGetAlbum = async (req: Request, res: Response) => {
+export const handleGetProduct = async (req: Request, res: Response) => {
   try {
-    const { albumId } = req.params
-    const album = await getProductById(albumId)
-    res.send({ response: album })
+    const { productId } = req.params
+    const products = await getProductById(productId)
+    res.send({ response: products })
   } catch (e) {
     console.error(e)
   }
 }
 
-export const handleAlbumCreate = async (req: Request, res: Response) => {
+export const handleProductCreate = async (req: Request, res: Response) => {
   try {
     const body = req.body
-    const album = await createProduct(body)
-    res.send({ status: 200, response: album })
+    const product = await createProduct(body)
+    res.send({ status: 200, response: product })
   } catch (e) {
     console.error(e)
   }
 }
 
-export const handleAlbumUpdate = async (req: Request, res: Response) => {
+export const handleProductUpdate = async (req: Request, res: Response) => {
   try {
-    const { albumId } = req.params
+    const { productId } = req.params
     const body = req.body
-    const album = await updateProduct(albumId, body)
-    res.send({ status: 200, response: album })
+    const product = await updateProduct(productId, body)
+    res.send({ status: 200, response: product })
   } catch (e) {
     console.error(e)
   }
 }
 
-export const handleAlbumDelete = async (req: Request, res: Response) => {
+export const handleProductDelete = async (req: Request, res: Response) => {
   try {
-    const { albumId } = req.params
-    const album = await deleteProduct(albumId)
-    res.send({ status: 204, response: album })
+    const { productId } = req.params
+    const product = await deleteProduct(productId)
+    res.send({ status: 204, response: product })
   } catch (e) {
     console.error(e)
   }

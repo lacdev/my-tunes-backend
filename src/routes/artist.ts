@@ -9,6 +9,7 @@ import {
   handleGetArtist,
   handleGetArtists,
 } from '../controllers/artist'
+import { handleGetProductsByArtist } from '../controllers/product'
 
 const router = Router()
 
@@ -59,6 +60,22 @@ router.get('/:artistId', handleGetArtist)
  *
  */
 router.get('/:artistId/albums', handleGetAlbumsByArtist)
+
+/**
+ * @openapi
+ *
+ *
+ * /api/artists/{artistId}/products:
+ *  get:
+ *    tags:
+ *      - Get All Artists
+ *    description: Response if user access albums
+ *    responses:
+ *      200:
+ *        description: Albums are up and running
+ *
+ */
+router.get('/:artistId/products', handleGetProductsByArtist)
 
 /**
  * @openapi

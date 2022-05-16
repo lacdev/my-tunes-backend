@@ -12,6 +12,7 @@ import { albumRouter } from './routes/album'
 import { userRouter } from './routes/user'
 import { authRouter } from './routes/auth'
 import { playlistRouter } from './routes/playlists'
+import { productRouter } from './routes/product'
 import swaggerDocs from './modules/swagger'
 
 const app = express()
@@ -31,6 +32,7 @@ app.use('/api/songs', songRouter)
 app.use('/api/albums', albumRouter)
 app.use('/api/users', userRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/products', productRouter)
 app.use('/api/playlists', playlistRouter)
 
 // Health endpoint
